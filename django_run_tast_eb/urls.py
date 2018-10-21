@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from rest_framework import routers
-from run_task import views
+from django_run_tast_eb.run_task import views
 from django.urls import path
 
 router = routers.DefaultRouter()
@@ -27,8 +27,8 @@ router.register(r'groups', views.GroupViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     url(r'^', include(router.urls)),
-    path(r'run_task/', views.run_task),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-    #path('snippets/<int:pk>', views.snippet_detail),
+    path(r'run_task_default/', views.run_task_default),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('run_task/<str:id>', views.run_task),
 
 ]
